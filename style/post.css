@@ -1,0 +1,16 @@
+.text-center {
+    margin-top: 75px;
+    margin-bottom: 20px;
+}
+
+.card {
+    width: 60%;
+}
+
+.card-title {
+    font-size: large;
+}
+
+.likes {
+    margin-bottom: 10px;
+}

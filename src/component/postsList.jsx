@@ -11,9 +11,8 @@ export default class PostsList extends React.Component {
         };
     }
 
-    // При получении данных, вызываем setState, чтобы передать их компоненту
     componentDidMount() {
-        fetch("../data/dataPosts.json")
+        fetch("../src/data/dataPosts.json")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -41,23 +40,21 @@ export default class PostsList extends React.Component {
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return <div className="text-center">Loading...</div>;
         } else {
             return (
                 <div className="container-fluid">
-                    <h1>My Posts</h1>
+                    <h2 className="text-center">My Posts</h2>
 
-                    <div className="gbody">
-                        <div className="row">
-                            {
-                                posts.map((i) => {
-                                    return <div className="col">
-                                        <Post key={i.id} name={i.name} postImage={i.postImage} likes={i.likes} postText={i.postText}/>
+                    <div className="gbody ">
+                        {
+                            posts.map((i) => {
+                                return <div post>
+                                    <Post key={i.id} name={i.name} postImage={i.postImage} likes={i.likes} postText={i.postText}/>
 
-                                    </div>
-                                })
-                            }
-                        </div>
+                                </div>
+                            })
+                        }
                     </div>
                 </div>
             );
