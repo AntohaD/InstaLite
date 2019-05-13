@@ -5,6 +5,7 @@ import Header from './component/header.jsx';
 import PostsLists from './component/postsList.jsx';
 import MyProfile from './component/myProfile.jsx';
 import DetailPost from './component/detailPost.jsx';
+import MainPage from './component/mainPage.jsx'
 
 ReactDOM.render(
     <Router>
@@ -13,7 +14,7 @@ ReactDOM.render(
                 <Switch>
                     <Route exact path="/" component={PostsLists} />
                     <Route path="/profile" component={MyProfile} />
-                    <Route path="/profile" component={DetailPost} /> 
+                    <Route path="/detailPost" component={DetailPost} /> 
                 </Switch>
         </div>
     </Router>,

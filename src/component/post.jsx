@@ -1,7 +1,6 @@
 import React from 'react';
 import ClickPost from './clickPost.jsx';
-import DetailPost from './detailPost.jsx';
-import { Link, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class Post extends React.Component {
 
@@ -17,10 +16,7 @@ export default class Post extends React.Component {
                     <div className="card-title">{this.props.name}</div>
                 </div>
                 
-                <img className="card-img" src={this.props.postImage} 
-                    
-                    >
-                </img>
+                <img className="card-img" src={this.props.postImage}></img>
                 
                 <div className="card-body">
                     <div className="card-text likes">Likes - {this.props.likes}</div>

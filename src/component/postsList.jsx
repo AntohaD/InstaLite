@@ -49,9 +49,8 @@ export default class PostsList extends React.Component {
                     <div className="gbody ">
                         {
                             posts.map((i) => {
-                                return <div post>
+                                return <div>
                                     <Post key={i.id} name={i.name} postImage={i.postImage} likes={i.likes} postText={i.postText}/>
-
                                 </div>
                             })
                         }
