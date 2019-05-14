@@ -12,6 +12,9 @@ export default class Nav extends React.Component {
                 <li className="nav-item">
                     <Link className="nav-link" to="/profile">My profile</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/logout">Log out</Link>
+                </li>
             </ul>
         </div>
     }

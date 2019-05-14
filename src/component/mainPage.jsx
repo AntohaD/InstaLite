@@ -1,13 +1,21 @@
 import React from 'react';
+import { BrowserRouter as Route, Switch } from 'react-router-dom';
+import Header from './header.jsx';
+import PostsLists from './postsList.jsx';
+import MyProfile from './myProfile.jsx';
+import DetailPost from './detailPost.jsx';
 
-let accessToken = '1276046791.a48cf57.01643986a9394cd79f7f63e408e5a4ee';
-
-export default class MainPage extends React.Component {
+export default class Main extends React.Component {
     render() {
-        return(
+        return (
             <div>
-                <button>Press</button>
-            </div>   
+                <Header />
+                <Switch>
+                    <Route exact path="/" component={PostsLists} />
+                    <Route path="/profile" component={MyProfile} />
+                    <Route path="/detailPost" component={DetailPost} />
+                </Switch>
+            </div>
         )
-    }
+    }   
 }
