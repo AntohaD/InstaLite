@@ -9,30 +9,37 @@ export default class DetailPost extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            post: [Id-1]
+            post: []
         };
     }
 
     componentDidMount() {
-        fetch("../src/data/dataPosts.json")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        post: result
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
+
+        const getDataUrl = 'https://api.instagram.com/v1/users/self/media/recent/?access_token=';
+        let instaToken = localStorage.getItem('instaToken');
+
+        if (instaToken) {
+            fetch(`${getDataUrl}${instaToken}`)
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        this.setState({
+                            isLoaded: true,
+                            post: result
+                        });
+                    },
+                    (error) => {
+                        this.setState({
+                            isLoaded: true,
+                            error
+                        });
+                    }
+                )
+        } 
     }
 
     render() {
+
         const {
             error,
             isLoaded,
@@ -46,20 +53,27 @@ export default class DetailPost extends React.Component {
         } else {
             return(
                 <div>
-                        {
-                            post.map((i) => {
-                                if (i.id == Id) {
-                                    return <div className="row detailPost">
-                                        <div className="col-md-6 col-sm-12 card d-flex border-top-0 border-right-0 border-bottom-0 border-left-0 mx-auto">
-                                            <InfoPost key={i.id} name={i.name} postImage={i.postImage} likes={i.likes} />
-                                        </div>
-                                        <div className="col-md-6 col-sm-12 card d-flex border-top-0 border-right-0 border-bottom-0 border-left-0 mx-auto">
-                                            <CommentPost comments={i.comments[0]} />
-                                        </div>
+                    {
+                        post.data.map((i) => {
+                            
+                            if (i.caption.id == Id) {
+                                    
+                                return <div className="row detailPost">
+                                    <div className="col-md-6 col-sm-12 card d-flex border-top-0 border-right-0 border-bottom-0 border-left-0 mx-auto">
+                                        <InfoPost 
+                                        key={i.caption.from.id} 
+                                        name={i.caption.from.username} 
+                                        postImage={i.images.standard_resolution.url} 
+                                        likes={i.likes.count} />
                                     </div>
-                                }
-                            }
-                            )}
+                                    <div className="col-md-6 col-sm-12 card d-flex border-top-0 border-right-0 border-bottom-0 border-left-0 mx-auto">
+                                        <CommentPost comment={i.id}/>
+                                    </div>
+                                </div>
+                            }       
+                        }
+                        )
+                    }
                 </div>
             )
         }

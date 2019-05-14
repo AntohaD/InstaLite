@@ -12,22 +12,28 @@ export default class PostsList extends React.Component {
     }
 
     componentDidMount() {
-        fetch("../src/data/dataPosts.json")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        posts: result
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
+        
+        const getDataUrl = 'https://api.instagram.com/v1/users/self/media/recent/?access_token=';
+        let instaToken = localStorage.getItem('instaToken');
+        
+        if (instaToken) {
+            fetch(`${getDataUrl}${instaToken}`)
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        this.setState({
+                            isLoaded: true,
+                            posts: result
+                        });
+                    },
+                    (error) => {
+                        this.setState({
+                            isLoaded: true,
+                            error
+                        });
+                    }
+                )
+        }    
     }
 
     render() {
@@ -48,9 +54,14 @@ export default class PostsList extends React.Component {
 
                     <div className="gbody ">
                         {
-                            posts.map((i) => {
+                            posts.data.map((i) => {
                                 return <div>
-                                    <Post key={i.id} name={i.name} postImage={i.postImage} likes={i.likes} postText={i.postText}/>
+                                    <Post 
+                                    key={i.caption.id} 
+                                    name={i.caption.from.username} 
+                                    postImage={i.images.standard_resolution.url} 
+                                    likes={i.likes.count} 
+                                    postText={i.caption.text}/>
                                 </div>
                             })
                         }

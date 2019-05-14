@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './header.jsx';
 import PostsLists from './postsList.jsx';
 import MyProfile from './myProfile.jsx';
