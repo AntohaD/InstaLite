@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class Logout extends React.Component {
 
@@ -9,9 +9,9 @@ export default class Logout extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>You have logged out</h1>
-                <Link type="button" class="btn btn-dark" to="/login">Return to login</Link>
+            <div className="text-center">
+                <h2 className="logoutText">You have logged out</h2>
+                <Link type="button" className="btn btn-dark" to="/login">Return to login</Link>
             </div>
         );
     }

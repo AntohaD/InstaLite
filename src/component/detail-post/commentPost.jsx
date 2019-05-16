@@ -1,4 +1,5 @@
 import React from 'react';
+import Comment from './comment.jsx';
 
 export default class CommentPost extends React.Component {
 
@@ -21,7 +22,6 @@ export default class CommentPost extends React.Component {
                 .then(res => res.json())
                 .then(
                     (result) => {
-                        console.log(result);
                         this.setState({
                             isLoaded: true,
                             post: result
@@ -44,22 +44,18 @@ export default class CommentPost extends React.Component {
             post
         } = this.state;
 
-        console.log(post)
-
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div className="text-center">Loading...</div>;
         } else {
             return (
-                    <div className="card-body">
-                        <div className="media border p-3">
-                            <div className="media-body">{
-                                post.data[0].text
-                                }</div>
-                        </div>
-                    </div>
-                
+                post.data.map((i) => {
+                    return <div key={i.id}>
+                        <Comment user={i}
+                                post={i} />
+                    </div> 
+                })      
             )
         }
     }

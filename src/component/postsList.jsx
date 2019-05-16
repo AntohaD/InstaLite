@@ -55,14 +55,22 @@ export default class PostsList extends React.Component {
                     <div className="gbody ">
                         {
                             posts.data.map((i) => {
-                                return <div>
-                                    <Post 
-                                    key={i.caption.id} 
-                                    name={i.caption.from.username} 
-                                    postImage={i.images.standard_resolution.url} 
-                                    likes={i.likes.count} 
-                                    postText={i.caption.text}/>
-                                </div>
+                                
+                                {/* If Error check this */}
+                                {/* console.log(i); */}
+
+                                if (i.caption) {
+                                    return <div key={i.caption.id}>
+                                        <Post
+                                            id={i.caption.id}
+                                            name={i.caption.from.username}
+                                            postImage={i.images.standard_resolution.url}
+                                            likes={i.likes.count}
+                                            postText={i.caption.text} />
+                                    </div>
+                                } else {
+                                    return <p>Check if the path in postList.jsx is correct.</p>
+                                }
                             })
                         }
                     </div>

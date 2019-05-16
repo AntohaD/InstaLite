@@ -1,6 +1,7 @@
 .text-center {
     margin-top: 75px;
     margin-bottom: 20px;
+    color: black;
 }
 
 .card {
@@ -9,8 +10,14 @@
 
 .card-title {
     font-size: large;
+    color: black;
 }
 
 .likes {
     margin-bottom: 10px;
+    color: black;
+}
+
+.card-text {
+    color: black;
 }
