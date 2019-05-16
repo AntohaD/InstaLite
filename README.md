@@ -1,4 +1,4 @@
-This application is written using react.js using api instagram. With it you can view the last 20 posts and go to the detailed page of the post. <br>
+This application is written using react.js, using api instagram. With it, you can view the last 20 posts and go to the detailed page of the post. <br>
 
 For starting app : in the project directory, you can run:
 
